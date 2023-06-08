@@ -36,8 +36,8 @@ end
 
 --#region [Car to Car] --physics stuff works in ui shit too so lol
 function CartoCar_UI()
-	ui.text("Will teleport you ~8 Meters behind the selected car.")
-	if ui.checkbox("Spectate Player on Click",Settings.SpectatePlayer) then Settings.SpectatePlayer = not Settings.SpectatePlayer end
+	--ui.text("Will teleport you ~8 Meters behind the selected car.")
+	--if ui.checkbox("Spectate Player on Click",Settings.SpectatePlayer) then Settings.SpectatePlayer = not Settings.SpectatePlayer end
 	ui.text("Select car to teleport to:")
 	ui.childWindow("##drivers", vec2(ui.availableSpaceX(), 120), function()
 		for i = 1, sim.carsCount - 1 do

@@ -40,7 +40,6 @@ function CartoCar_UI()
 	if ui.checkbox("Spectate Player on Click",Settings.SpectatePlayer) then Settings.SpectatePlayer = not Settings.SpectatePlayer end
 	ui.text("Select car to teleport to:")
 	ui.childWindow("##drivers", vec2(ui.availableSpaceX(), 120), function()
-		local firstCarTeleported = false -- Flag to keep track of the first car teleported
 		for i = 1, sim.carsCount - 1 do
 			local car = ac.getCar(i)
 			local driverName = ac.getDriverName(i)
@@ -51,18 +50,14 @@ function CartoCar_UI()
 						ac.focusCar(i)
 					end
 				end
-				if not firstCarTeleported then
-					if ui.button("Teleport") and selectedCar and timer.running <= 0 then -- check if car selected/button pressed/timer above 0
-						timer.running = timer.length
-						local dir = selectedCar.look
+				if ui.button("Teleport") and selectedCar and timer.running <= 0 then -- check if car selected/button pressed/timer above 0
+					timer.running = timer.length
+					local dir = selectedCar.look
 
-						local teleportee = physics.getCarVelocity(selectedCar)
-						physics.setCarVelocity(0, teleportee) -- mirror velocity
-
-						physics.setCarPosition(0, selectedCar.position + vec3(0, 0.1, 0) - dir * 10, -dir) -- spawn 8 meters behind, add 0.1 meter height to avoid falling through the map
-
-						firstCarTeleported = true -- Set the flag to true after teleporting the first car
-					end
+                    local teleportee = physics.getCarVelocity(selectedCar)
+					physics.setCarVelocity(0, teleportee) -- mirror velocity
+					
+					physics.setCarPosition(0, selectedCar.position + vec3(0, 0.1, 0) - dir * 10, -dir) -- spawn 8 meters behind, add 0.1 meter height to avoid falling through the map
 				end
 			end
 		end

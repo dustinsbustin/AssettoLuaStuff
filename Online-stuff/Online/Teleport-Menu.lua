@@ -18,8 +18,8 @@ Settings = ac.storage({
 })
 
 local timer = {
-	running = 0,	--we move length/blength into here
-	length = 0,		--the normal length after teleporting
+	running = 5,	--we move length/blength into here
+	length = 1,		--the normal length after teleporting
 	blength = 0.5,	--length after setting a button
 }
 
@@ -55,10 +55,17 @@ function CartoCar_UI()
 					timer.running = timer.length
 					local dir = selectedCar.look
 
-                    local playerVelocity = ac.getCarState(selectedCar).velocity
+                    local playerVelocity = ac.getCarState(1).velocity
+                    local playerGear = ac.getCarState(1).gear
+                    local playerRPM = ac.getCarState(1).rpm
+                    print(playerGear)
+                    print(playerRPM)
 
 					physics.setCarPosition(0, selectedCar.position + vec3(0, 0.1, 0) - dir * 10, -dir)
                     physics.setCarVelocity(0, playerVelocity)
+
+                    physics.engageGear(0, playerGear)
+                    physics.setEngineRPM(0, playerRPM)
 				end
 			end
 		end
@@ -73,11 +80,6 @@ function script.update(dt)
 	if timer.running >= 0 then -- timer for anything to go
 		timer.running = timer.running - dt
 	end
-	--#endregion
-
-	--#region[Functions]
-	TPtoCam_Update()
-	ToTrackWithRotation_Update()
 	--#endregion
 end
 

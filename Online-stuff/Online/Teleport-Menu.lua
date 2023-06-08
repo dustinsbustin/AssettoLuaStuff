@@ -43,7 +43,8 @@ function CartoCar_UI()
 		for i = 1, sim.carsCount - 1 do
 			local car = ac.getCar(i)
 			local driverName = ac.getDriverName(i)
-			if car.isConnected and not car.isAIControlled and not string.find(driverName, "tnhd.gg") then
+			--if car.isConnected and not car.isAIControlled and not string.find(driverName, "tnhd.gg") then
+            if car.isConnected then
 				if ui.selectable(driverName, selectedCar == car) then
 					selectedCar = car
 					if Settings.SpectatePlayer == true then

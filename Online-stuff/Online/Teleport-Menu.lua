@@ -93,4 +93,4 @@ end
 
 
 
-ui.registerOnlineExtra(ui.Icons.Compass, "Manual Teleport Menu", nil, Teleportation,nil, ui.OnlineExtraFlags.Tool, ui.WindowFlags.NoScrollWithMouse)
+ui.registerOnlineExtra(ui.Icons.Compass, "Teleport To Player", nil, Teleportation,nil, ui.OnlineExtraFlags.Tool, ui.WindowFlags.NoScrollWithMouse)

@@ -57,8 +57,8 @@ function CartoCar_UI()
 
                     local teleportee = ac.getCarVelocity(selectedCar)
 
-					physics.setCarVelocity(0, teleportee) -- mirror velocity
 					physics.setCarPosition(0, selectedCar.position + vec3(0, 0.1, 0) - dir * 10, -dir) -- spawn 8 meters behind, add 0.1 meter height to avoid falling through the map
+                    physics.setCarVelocity(0, teleportee) -- mirror velocity
 				end
 			end
 		end
